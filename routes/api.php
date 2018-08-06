@@ -18,7 +18,9 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::group(['middleware' => 'cors'], function() {
-    Route::get('tasklist', 'ToDoController@index');
+    Route::post('auth/register', 'UserController@register');
+    Route::post('auth/login', 'UserController@login');
+    Route::post('tasklist', 'ToDoController@index');
     Route::post('tasklist/create', 'ToDoController@store');
     Route::post('tasklist/updatename', 'ToDoController@updateName');
     Route::post('tasklist/updatestatus', 'ToDoController@updateStatus');

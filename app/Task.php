@@ -6,6 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Task extends Model
 {
-    protected $primaryKey = 'taskId';
+    protected $primaryKey = 'TaskId';
     protected $table = 'tasks';
 }

@@ -7,9 +7,9 @@ use App\Task;
 
 class ToDoController extends Controller
 {
-    public function index ()
+    public function index (Request $request)
     {
-        $taskList = Task::select('TaskId','TaskName', 'TaskStatus')->get()->toJson();        
+        $taskList = Task::select('TaskId','TaskName', 'TaskStatus')->where('UserId', '=', $request->UserId)->get()->toJson();        
         return $taskList;
         // return '{
         //     "TaskId": 2,
@@ -23,6 +23,7 @@ class ToDoController extends Controller
         $taskList = new Task;
         $taskList->TaskName = $request->TaskName;
         $taskList->TaskStatus = $request->TaskStatus;
+        $taskList->UserId = $request->UserId;
         $taskList->save();
     }
 
@@ -31,6 +32,7 @@ class ToDoController extends Controller
         $taskList = Task::find($request->TaskId);
         $taskList->TaskName = $request->TaskName;
         $taskList->save();
+
     }
 
     public function updateStatus (Request $request)
